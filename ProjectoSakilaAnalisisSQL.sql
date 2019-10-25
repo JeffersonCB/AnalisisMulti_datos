@@ -9,8 +9,6 @@ CREATE TABLE DIM.customer (
   CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
-
-
 CREATE TABLE  DIM.inventory (
   inventory_id INT NOT NULL IDENTITY,
   film_Name VARCHAR(45) NOT NULL,
@@ -28,19 +26,3 @@ CREATE TABLE FACT.payment (
   PRIMARY KEY NONCLUSTERED (payment_id),
   CONSTRAINT fk_payment_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ,
  )
-
-CREATE TABLE FACT.rental (
-  rental_id INT NOT NULL IDENTITY,
-  rental_date DATETIME NOT NULL,
-  inventory_id INT  NOT NULL,
-  customer_id INT  NOT NULL,
-  return_date DATETIME DEFAULT NULL,
-  PRIMARY KEY NONCLUSTERED (rental_id),
-  CONSTRAINT fk_rental_inventory FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id) ,
-  CONSTRAINT fk_rental_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) 
-)
-
-
-
-
-
